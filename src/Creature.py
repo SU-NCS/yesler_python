@@ -1,18 +1,19 @@
 import Utils as ut
+from random import *
 
 class Creature(object):
-    """class for creatures that player will encounter."""
+    """Class for creatures that player will encounter."""
+    outcome = False
+    temperment = 0
+    is_hostile = False
+
     def __init__(self, name, introduction, greeting=None, story=None, 
-                pace=0.1, is_hostile = False):
+                pace=0.1):
         self.name = name
         self.introduction = introduction
         self.greeting = greeting
         self.story = story
         self.pace = pace
-        self.is_hostile = is_hostile
-        self.temperment = 0
-        if is_hostile:
-            self.temperment = 10
 
     def speak(self, dialog):
         """Prints out text to the screen if creature is not hostile."""
@@ -20,11 +21,14 @@ class Creature(object):
             ut.slow_print("I don't have anything to say to you.")
             self.offer_challenge()
         else:
-            for line in dialog.split("."):
-                line = line.strip()
-                line = line + ". "
-                ut.slow_print(line, self.pace)
-    
+            if len(dialog) > 80:
+                for line in dialog.split("."):
+                    line = line.strip()
+                    line = line + ". "
+                    ut.slow_print(line, self.pace)
+            else:
+                ut.slow_print(dialog, self.pace)
+
     def make_hostile(self):
         if self.temperment < 10:
             self.temperment += 1
@@ -42,19 +46,21 @@ class Creature(object):
         self.speak(self.story)
     
     def offer_challenge(self, challenge=None):
-        if self.is_hostile or not challenge:
+        if self.is_hostile:
+            ut.slow_print("GRAAAAH!!!! YOU'RE MAKING ME SO MAD!!!!")
             return False
-        
         ut.slow_print("Ah! So you want a challenge! Here you go!", 
                         self.pace)
         while True:
-            outcome = challenge()
-            if outcome:
+            if self.is_hostile:
+                break 
+            self.outcome = challenge()
+            if self.outcome:
                 break
             else:
                 self.make_hostile()
-        return outcome
+        return self.outcome
 
-    
+
 
 
