@@ -1,5 +1,4 @@
 import Utils as ut
-from random import *
 
 class Creature(object):
     """Class for creatures that player will encounter."""
@@ -17,15 +16,17 @@ class Creature(object):
 
     def speak(self, dialog):
         """Prints out text to the screen if creature is not hostile."""
-        if self.is_hostile or not dialog:
+        if not dialog:
             ut.slow_print("I don't have anything to say to you.")
-            self.offer_challenge()
         else:
             if len(dialog) > 80:
-                for line in dialog.split("."):
-                    line = line.strip()
-                    line = line + ". "
-                    ut.slow_print(line, self.pace)
+                output = ""
+                for line in dialog.split(" "):
+                    if len(output) < 80:
+                        output += line
+                    else:
+                        ut.slow_print(line, self.pace)
+                        output = ""
             else:
                 ut.slow_print(dialog, self.pace)
 
@@ -39,27 +40,27 @@ class Creature(object):
         self.speak(self.introduction)
 
     def greet(self):
-        ut.slow_print("Hello, traveller. My name is %s!" % self.name, self.pace)
-        self.speak(self.greeting)        
+        fmap = {"name": self.name, "greeting": self.greeting}
+        greeting = "Hello, traveller. My name is {name}! {greeting}".format_map(fmap)
+        self.speak(greeting)        
         
     def tell_story(self):
         self.speak(self.story)
     
-    def offer_challenge(self, challenge=None):
-        if self.is_hostile:
-            ut.slow_print("GRAAAAH!!!! YOU'RE MAKING ME SO MAD!!!!")
-            return False
-        ut.slow_print("Ah! So you want a challenge! Here you go!", 
-                        self.pace)
+    def offer_challenge(self, challenge):
         while True:
             if self.is_hostile:
-                break 
-            self.outcome = challenge()
-            if self.outcome:
+                self.speak("GRAAAAH!!!!! YOU'RE MAKING ME SO MAD!!!")
                 break
             else:
-                self.make_hostile()
+                self.outcome = challenge()
+                if self.outcome:
+                    self.speak("Wow! Great work! You pass!")
+                    break
+                else:
+                    self.make_hostile()
         return self.outcome
+
 
 
 
