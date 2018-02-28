@@ -1,6 +1,7 @@
 import unittest
 from unittest import mock
 import io
+import sys
 from Player import Player 
 
 class PlayerTest(unittest.TestCase):
@@ -26,45 +27,26 @@ class PlayerTest(unittest.TestCase):
         knap = self.player.knapsack
         self.assertLessEqual(len(knap), 5)
     
-    # def test_can_remove_item_from_knapsack(self):
-    #     item = "wrench"
-    #     self.player.add_item(item)
-    #     old_k = self.player.knapsack[:]
-    #     i = self.player.knapsack.index(item)
-    #     self.player.remove_item(i)
-    #     new_k = self.player.knapsack[:]
-    #     self.assertLess(len(new_k), len(old_k))
-
-    # def test_can_remove_item_from_knapsack_with_string_parameter(self):
-    #     item = "wrench"
-    #     self.player.add_item(item)
-    #     old_k = self.player.knapsack[:]
-    #     i = self.player.knapsack.index(item)
-    #     self.player.remove_item(str(i))
-    #     new_k = self.player.knapsack[:]
-    #     self.assertLess(len(new_k), len(old_k))
-    
-    def test_remove_item_asks_player_which_item_to_remove(self):
-        expected_output = "Which item would you like to remove?"
-        count = 0
-        for i in range(0,5):
-            expected_output += " " + str(count) + ": blah"
-            self.player.add_item("blah")
-            count += 1
-        with mock.patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+    def test_remove_item(self):
+        self.player.knapsack = []
+        self.player.add_item("wrench")
+        self.player.add_item("screwdriver")
+        with mock.patch('builtins.input',side_effect='1'):
+            output = io.StringIO()
+            sys.stdout = output
             self.player.remove_item()
-            received_output = mock_stdout.getvalue()
-            self.assertEqual(expected_output, received_output)
-    
-    
-    def test_can_remove_selected_item_from_knapsack(self):
-        mock_array = ["wrench", "flashlight", "candy"]
-        for item in mock_array:
-            self.player.add_item(item)
-        self.player.remove_item()
-        expected_output = ["wrench", "candy"]
-        self.assertEqual(self.player.knapsack, expected_output)
+            sys.stdout = sys.__stdout__
+            self.assertEqual(output.getvalue(), "Which item would you like to remove? 1: wrench 2: screwdriver")
 
+    def test_can_add_items_after_five_if_remove_one(self):
+        self.player.knapsack = []
+        for i in range(0,5):
+            self.player.add_item("blah")
+        output = io.StringIO()
+        sys.stdout = output
+        self.player.add_item("last_blah")
+        sys.stdout = sys.__stdout__
+        self.assertEqual(output.getvalue(), "I'm sorry, you must drop an item.")
 
 if __name__ == '__main__':
     unittest.main()        

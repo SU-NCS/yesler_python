@@ -16,11 +16,14 @@ class Player(object):
     def add_item(self, item):
         if len(self.knapsack) < 5:
             self.knapsack.append(item)
+        else:
+            ut.slow_print("I'm sorry, you must drop an item.")
+            
     
     def remove_item(self, item_index=None):
         if item_index == None:
             ut.slow_print("Which item would you like to remove?")
-            count = 0
+            count = 1
             for item in self.knapsack:
                 ut.slow_print(" " + str(count) + ": " + item)
                 count += 1
@@ -28,7 +31,7 @@ class Player(object):
         if not isinstance(item_index, int):
             item_index = int(item_index)
         try:
-            del self.knapsack[item_index]
+            del self.knapsack[item_index - 1]
         except IndexError:
             print("Sorry, no item at this index.")
 
