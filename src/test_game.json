@@ -1,0 +1,21 @@
+{
+    "backstory": "A long time ago in a galaxy far, far away...",
+    "episodes": [
+        {
+            "title": "The Foyer",
+            "creature": {
+                "name": "Bob",
+                "introduction": "Hi, my name is Bob, but you can call me Bobby.",
+                "story": "I was born without vowels. Can you help me find some vowels?"
+            },
+            "room_description": "You find yourself in an ugly room with purple wallpaper.",
+            "traps": {
+                "text": "The treasure chest lid was rusty and sharp. You cut your hand and contract tetanus.",
+                "damage": "-1"
+            }
+        },
+        {
+
+        }
+    ]
+}

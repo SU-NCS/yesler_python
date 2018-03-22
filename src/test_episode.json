@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Foyer",
+        "room_description": "The room is damp and poorly lit. You can see slime on the floor around your feet. You hear a muffled growl in one corner.",
+        "creature" : {
+            "name": "McGruff the Crime Dog",
+            "introduction": "I been fightin' crime so many years, I don't even know what else to do.",
+            "greeting": "Hello traveller. Are you a criminal? I didn't think so...",
+            "story": "I'm a storyteller, but I fear there isn't much to tell. I've been in this dungeon so long."
+        },
+        "treasure": "Wrench",
+        "traps": "In the treasure chest along with the wrench, you find 2 cobras. One of them smiles. The other bites you. -1 hit point",
+        "hitpoint_change": -1
+    },
+    {
+        "name": "Dungeon",
+        "room_description": "The room is dry and dark. You can faintly see bones scattered across the floor. Something smells. You think that you can hear breathing.",
+        "creature" : {
+            "name": "Zombie mczombieface",
+            "introduction": "braaaiiinnnnsssssss",
+            "greeting": "braiiiiinnnsssss",
+            "story": "[Narrator]: You're not gonna get much of a response from this one, better solve the challenge and get out of here."
+        },
+        "traps": "Not sure what treasure you expected to find among all these bones. You get bit by a plague-rat. -2 hitpoints.",
+        "hitpoint_change": -2
+    }
+]
