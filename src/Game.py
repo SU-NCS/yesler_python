@@ -7,7 +7,7 @@ import Episode
 class Game:
 
     def __init__(self, story, challenge_path):
-        self.player = Player()
+        self.player = Player.Player()
         try:
             with open(story) as f:
                 self.game_data = json.load(f)
@@ -45,7 +45,7 @@ class Game:
     
 
     def load_episode(self, episode):
-        episode = Episode(episode)
+        episode = Episode.Episode(episode)
     
 
 
