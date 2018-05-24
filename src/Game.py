@@ -11,12 +11,14 @@ class Game:
         try:
             with open(story) as f:
                 self.game_data = json.load(f)
+                print("Success. Story loaded.")
         except Exception as e:
             print("Something went wrong with your file. I need a story: {}".format(e))
         # Import our challenges
         try:
             for root, dirs, files in os.walk(challenge_path):
                 __all__ = [name.split(".")[0] for name in files if "challenge" in name]
+                
         except Exception as e2:
             print("There's something wrong with your challenge path: {}".format(e))
 
