@@ -28,9 +28,12 @@ class Episode:
             #ut.slow_print("Your hitpoints: {}".format(self.hitpoints))
             self.traps = None
             return self.hitpoint_change
+        elif self.treasure:
+            temp = self.treasure
+            self.treasure = None
+            return temp
         else:
-            return self.treasure
-
+            return False
 
     def talk_to_creature(self):
         self.creature.greet()

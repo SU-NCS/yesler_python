@@ -48,18 +48,26 @@ class Game:
             time.sleep(2)
             raise SystemExit
     
-
+    #run a single episode
     def run_episode(self, episode):
         active_episode = Episode.Episode(episode)
         active_episode.describe_room()
+    
         active_treasure = input("Do you want to search for treasure?")
         if active_treasure.lower() == "y":
             treasure_or_hitpoint_change = active_episode.get_treasure()
+            #if trap then there could still be treasure
             if type(treasure_or_hitpoint_change) is int:
                 self.player.modify_hitpoints(treasure_or_hitpoint_change)
                 ut.slow_print("Hitpoints: {}".format(self.player.hitpoints))
+                active_treasure = input("Do you want to search for treasure?")
+                if active_treasure.lower() == "y":
+                    self.player.add_item(treasure_or_hitpoint_change)
+                    ut.slow_print("Knapsack:" + self.player.knapsack)
             else:
                 self.player.add_item(treasure_or_hitpoint_change)
                 ut.slow_print("Knapsack:" + self.player.knapsack)
+        else:
+            #go to creature
 
 
