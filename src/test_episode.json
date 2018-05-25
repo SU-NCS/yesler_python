@@ -21,7 +21,7 @@
             "greeting": "braiiiiinnnsssss",
             "story": "[Narrator]: You're not gonna get much of a response from this one, better solve the challenge and get out of here."
         },
-        "treasure": null,
+        "treasure": "None",
         "traps": "Not sure what treasure you expected to find among all these bones. You get bit by a plague-rat. -2 hitpoints.",
         "hitpoint_change": -2
     }

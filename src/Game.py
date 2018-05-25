@@ -52,16 +52,14 @@ class Game:
     def run_episode(self, episode):
         active_episode = Episode.Episode(episode)
         active_episode.describe_room()
-        if active_episode.treasure is not None:
-            active_treasure = input("Do you want to search for treasure?")
-            if active_treasure.lower() == "y":
-                treasure_or_hitpoint_change = active_episode.get_treasure()
-                if type(treasure_or_hitpoint_change) is int:
-                    self.player.modify_hitpoints(treasure_or_hitpoint_change)
-                    ut.slow_print("Hitpoints: {}".format(self.player.hitpoints))
-                else:
-                    self.player.add_item(treasure_or_hitpoint_change)
-                    ut.slow_print("Knapsack:" + self.player.knapsack)
-
+        active_treasure = input("Do you want to search for treasure?")
+        if active_treasure.lower() == "y":
+            treasure_or_hitpoint_change = active_episode.get_treasure()
+            if type(treasure_or_hitpoint_change) is int:
+                self.player.modify_hitpoints(treasure_or_hitpoint_change)
+                ut.slow_print("Hitpoints: {}".format(self.player.hitpoints))
+            else:
+                self.player.add_item(treasure_or_hitpoint_change)
+                ut.slow_print("Knapsack:" + self.player.knapsack)
 
 
