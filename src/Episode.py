@@ -11,7 +11,7 @@ class Episode:
         #print (self.room_description)
         self.treasure = episode_data['treasure']
         self.traps = episode_data['traps']
-        self.hitpoints = episode_data['hitpoint_change']
+        self.hitpoint_change = episode_data['hitpoint_change']
         print("Episode loaded")
     
     def describe_room(self):
@@ -23,10 +23,11 @@ class Episode:
     
     def get_treasure(self):
         if self.traps:
-            ut.slow_print(self.traps['text'])
-            self.hitpoints = self.hitpoints + self.traps['damage']
-            ut.slow_print("Your hitpoints: {}".format(self.hitpoints))
+            ut.slow_print(self.traps)
+            #self.hitpoints = self.hitpoints + self.hitpoint_change  #use hitpoints if you there is trap in the way
+            #ut.slow_print("Your hitpoints: {}".format(self.hitpoints))
             self.traps = None
+            return self.hitpoint_change
         else:
             return self.treasure
 
