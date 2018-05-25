@@ -6,11 +6,13 @@ class Episode:
 #figure out how to pass a challenge into the creature.
     def __init__(self, episode_data):
         cd = episode_data["creature"]
-        self.creature = Creature(cd['name'], cd['introduction'], cd['greeting'], cd['story'])
+        self.creature = Creature.Creature(cd['name'], cd['introduction'], cd['greeting'], cd['story'])
         self.room_description = episode_data['room_description']
+        #print (self.room_description)
         self.treasure = episode_data['treasure']
         self.traps = episode_data['traps']
         self.hitpoints = episode_data['hitpoint_change']
+        print("Episode loaded")
     
     def describe_room(self):
         try:

@@ -3,6 +3,7 @@ import time
 import os
 import Player
 import Episode
+import Utils as ut
 
 class Game:
 
@@ -23,11 +24,13 @@ class Game:
             print("There's something wrong with your challenge path: {}".format(e))
 
     def start_game(self):
-        counter = len(self.game_data)
-        while self.player.hitpoints > 0:
+        counter = len(self.game_data) #number of episodes
+        #print ("counter",counter)
+        while self.player.hitpoints > 0 and counter > 0:  #hitpoints init in Player
             for episode in self.game_data:
                 counter = counter - 1
-                load_episode(episode)
+                self.run_episode(episode) #load data
+                print ("counter",counter)
         if counter > 0:
             outcome = "Game Over! You lose!"
         else: 
@@ -38,7 +41,7 @@ class Game:
     def end_game(self, outcome):
         ut.slow_print(outcome)
         play_again = input("Would you like to play again? (y/N) ")
-        if lower(play_again) == "y":
+        if play_again.lower() == "y":
             start_game()
         else:
             print("Thanks for playing! Goodbye!")
@@ -46,8 +49,11 @@ class Game:
             raise SystemExit
     
 
-    def load_episode(self, episode):
-        episode = Episode.Episode(episode)
+    def run_episode(self, episode):
+        active_episode = Episode.Episode(episode)
+        active_episode.describe_room()
+        if active_episode.treasure is not None:
+            active_treasure = input("Do you want to search for treasure?")
     
 
 
