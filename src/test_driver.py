@@ -21,6 +21,6 @@ def challenge_1(num):
         return False
 
 c = Creature.Creature("Billy", "Hi there", "No greeting", "no story")
-while True:
-   c.offer_challenge(challenges.challenge_1)
+c.offer_challenge(challenges.challenge_1)
+
 

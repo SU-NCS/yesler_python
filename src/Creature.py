@@ -55,13 +55,14 @@ class Creature(object):
         self.speak(self.story)
     
     def offer_challenge(self, challenge):
-        """Creature takes challenge function and returns the outcome. Manage multiple attempts in Episode."""
+        """Creature takes challenge function and tries the challenge until it returns
+        true or the creature becomes hostile."""
         while not self.is_hostile: # As long as the creature isn't hostile, we try the challenge.
             self.outcome = challenge()
             print(self.outcome)
             print(self.temperment)
             if self.outcome:
-                return self.outcome # if we pass the challenge we win the episode
+                return True # if we pass the challenge we win the episode
             else: # Otherwise increase hostility and try again.
                 self.make_hostile()
         
