@@ -3,7 +3,7 @@ import Creature
 import Utils as ut 
 import Player 
 import Game 
-import challenges 
+import random
 
 def challenge_1(num):
         guess = None
@@ -21,6 +21,9 @@ def challenge_1(num):
         return False
 
 c = Creature.Creature("Billy", "Hi there", "No greeting", "no story")
-c.offer_challenge(challenges.challenge_1)
+n = random.randint(1,10)
+success = False
+while not c.is_hostile and not success:
+    success = c.offer_challenge(challenge_1(n))
 
 

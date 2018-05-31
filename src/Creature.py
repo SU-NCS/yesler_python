@@ -35,7 +35,7 @@ class Creature(object):
         Increments hostility until creature is hostile. Episode must be
         restarted if the creature becomes hostile.
         """
-        if self.temperment < 10:
+        if self.temperment < 5:
             self.temperment += 1
         else:
             self.is_hostile = True
@@ -57,17 +57,12 @@ class Creature(object):
     def offer_challenge(self, challenge):
         """Creature takes challenge function and tries the challenge until it returns
         true or the creature becomes hostile."""
-        while not self.is_hostile: # As long as the creature isn't hostile, we try the challenge.
-            self.outcome = challenge()
-            print(self.outcome)
-            print(self.temperment)
-            if self.outcome:
-                return True # if we pass the challenge we win the episode
-            else: # Otherwise increase hostility and try again.
-                self.make_hostile()
+        # We try the challenge.
+        outcome = challenge
+        if not outcome:
+            self.make_hostile() # if challenge failed make more hostile
+        return outcome # Return the outcome of the challenge
         
-        return not self.is_hostile # Creature became too hostile and we fail. 
-
 
 
 
