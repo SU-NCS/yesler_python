@@ -3,13 +3,12 @@ import Utils as ut
 class Creature(object):
     """Class for creatures that player will encounter."""
 
-    def __init__(self, name, introduction, greeting=None, story=None, 
-                pace=0.1):
+    def __init__(self, creature_data, pace=0.1):
         # Initialize Creature properties.
-        self.name = name
-        self.introduction = introduction
-        self.greeting = greeting
-        self.story = story
+        self.name = creature_data['name']
+        self.introduction = creature_data['introduction']
+        self.greeting = creature_data['greeting']
+        self.story = creature_data['story']
         self.pace = pace
         self.temperment = 0
         self.is_hostile = False
