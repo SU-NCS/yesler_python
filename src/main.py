@@ -66,6 +66,7 @@ def main(story):
    if reply.lower() != "n":
       success = False
       chal = challenges.Episode1()
+      # chal = challenges.Episode2()
       while not creature.is_hostile and not success:
          success = creature.offer_challenge(chal)
    

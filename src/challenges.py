@@ -19,6 +19,11 @@
 
 import random
 
+class EpisodeX(object):
+      def guess(self):
+            pass
+
+
 class Episode1(object):
       num = 0
       
@@ -38,3 +43,19 @@ class Episode1(object):
             except:
                print("That was not a number. Try again")
             return False
+
+# class Episode2(object):
+      # 
+      # def guess(self):
+            # in_guess = input("What is 1 + 1? ")
+            # in_guess = int(in_guess)
+            # correct = self.two_plus_two()
+            # if in_guess == correct:
+                  # return True
+            # else:
+                  # print("No, try again.")
+                  # return False
+# 
+      # def two_plus_two(self):
+            # x = 2+2
+            # return x
