@@ -1,21 +1,22 @@
 {
-    "backstory": "A long time ago in a galaxy far, far away...",
+    "introduction": "A long time ago in a galaxy far, far away...",
     "episodes": [
         {
             "title": "The Foyer",
-            "creature": {
-                "name": "Bob",
-                "introduction": "Hi, my name is Bob, but you can call me Bobby.",
-                "story": "I was born without vowels. Can you help me find some vowels?"
-            },
             "room_description": "You find yourself in an ugly room with purple wallpaper.",
-            "traps": {
-                "text": "The treasure chest lid was rusty and sharp. You cut your hand and contract tetanus.",
-                "damage": "-1"
-            }
-        },
+            "episode_narrative": "The day started well, but things got weird fast. You were walking, as you do every morning, but a thick fog gradually rose up from the dewy grass. Out of the fog a strange house appeared on your right. You walk up to the door and find it partly ajar.",
+            "traps": "The treasure chest lid was rusty and sharp. You cut your hand and contract tetanus.",
+            "treasure": "Wrench",
+            "hitpoint_change": -1
+        }
+    ],
+    "creatures": [
         {
-
+            "name": "Bob",
+            "introduction": "A big, hairy, blue beast lumbers before you.",
+            "greeting": "You can call me Bobby.",
+            "story": "I was born without vowels. Can you help me find some vowels?"
         }
     ]
+
 }
