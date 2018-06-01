@@ -34,7 +34,7 @@ class Episode(object):
     def get_treasure(self):
         """ Searches room for treasure. 
         Return TUPLE:
-        first value is hitpoint change, second value is treausre, and third is whether we can try again."""
+        first value is hitpoint change, second value is treasure."""
         try_again = True
         hitpoints = 0
         treasure = None

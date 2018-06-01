@@ -5,14 +5,15 @@ class Player(object):
         Class to manage the player object. This deals with the player's stats,
         their name, and the things they carry.
     """
-    def __init__(self, name=None):
+    name = None 
+
+    def __init__(self):
         """
         Sets the name or prompts for a name. Initializes hit points,
         and creates an empty list for a knapsack.
         """
-        if not name:
-            name = input("What is your name?")
-        self.name = name
+        self.name = input("What is your name?")
+        # self.name = input_name
         self.hitpoints = 10
         self.knapsack = []
 

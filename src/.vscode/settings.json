@@ -1,3 +1,5 @@
 {
-    "python.linting.enabled": false
+    "python.pythonPath": "python3",
+    "python.linting.enabled": false,
+    "python.formatting.provider": "yapf"
 }

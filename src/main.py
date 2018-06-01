@@ -3,6 +3,7 @@ import Utils as ut
 import json 
 import os 
 import random # for episode 1.
+
 def main(story):
    # Load game data
    try:
@@ -20,14 +21,13 @@ def main(story):
    except ImportError as e:
       print("Error loading challenges.")
       print("Exiting.")
-
-   
    
    
    # Begin the Game
-   print("Welcome to the Adventure Game in Text")
+   ut.slow_print("Welcome to the Adventure Game in Text")
    print("The Rules are Simple: Get through the rooms and stay alive.")
    print("To get started, let's hear a little about you: ")
+   
    # Initialize Player
    player = Player.Player()
 
@@ -37,6 +37,7 @@ def main(story):
    print("You have {} hitpoints".format(player.hitpoints))
    
    ut.slow_print(game_data['introduction'])
+   # While loop for multiple episodes.
    # Initialize Episode
    episode_data = game_data["episodes"][0]
    episode = Episode.Episode(episode_data)
@@ -64,9 +65,10 @@ def main(story):
    reply = input("Do you accept? (Y/n)")
    if reply.lower() != "n":
       success = False
-      n = random.randint(1,10)
+      chal = challenges.Episode1()
       while not creature.is_hostile and not success:
-         success = creature.offer_challenge(challenges.episode1(n))
+         success = creature.offer_challenge(chal)
+   
    if success:
       print("YOU WIN!")
    else:
